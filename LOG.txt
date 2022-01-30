@@ -1,0 +1,300 @@
+Next step right now, is take the reverb out of
+the soft servers, and put it on the hard server.
+That will simplify a lot.
+
+One next step is a horns section patch.  May use
+Sonatina Symphonic Orchestra SF2s, or may use
+next-gen SFZs, e.g.:
+http://vis.versilstudios.net/vsco-community.html
+Fluidsynth still does not do SFZ, it is probably time
+to start setting up LinuxSynth.  Installed
+jsampler and linuxsampler.  They seem to run much
+better than last time checked.
+
+Current status good.  Rare cutouts of SRO when load extremely
+high, other patches do not cut out.  Will work on this.
+Perhaps reverb in the hard server only!!!!!
+No static with cutouts, which is fantastic.
+
+Received word through LAU that ALSA MIDI users just
+turn on their keyboards last.  In other words,
+this is normal behavior.  Will leave it unless
+additionally motivated.  If desired, could
+run using JACK MIDI from hardware to hard server,
+then ALSA MIDI from hard server to soft servers.
+
+Installed net-tools-debian-ifconfig with yaourt
+and then ran 'ifconfig lo multicast' to enable
+multicast on localhost.
+Was not able to run two qmidinet processes
+on the one machine, even by binding one to lo
+and the other to hardware NIC.
+
+qmidinet:
+https://qmidinet.sourceforge.io
+seems to be the Linux MIDI-over-IP
+method currently extant.  There are
+a few OSC-over-IP methods which may be
+more common, but qmidinet is in
+good development, and we would have to
+add a conversion step for the OSC
+to be useful.  qmidinet does use multicast.
+
+Could make backup with:
+http://www.urbackup.org
+
+Tests now passing with flying colors.
+Only catch is typical ALSA MIDI behavior,
+may have to power keyboard off/on after
+all processes started.
+
+Ready for production-style tests.  Video is
+sometimes a problem for headless, et cetera.
+
+Studied ./soft1 catia and CPU levels.  JACK DSP
+rising to 91% plus, CPU not rising similarly.
+Checked Calf filters for SRO.  Found Calf reverb
+producing huge overload when notes pile.  Turned its
+output down to about 10%.  Set Small Room instead
+of Tunnel-Like, intended to do that long ago for
+tonal reasons.  Very very very nice.  No overload.
+
+Set period of JACK soft servers to 256, leaving
+period of hard server at 128.  Improvement.  Not enough.
+
+Set Yoshimi internal buffer size to 512, they were 256.
+No change.
+
+Ran ./soft1 catia when testing at high load.  DSP
+% shot up to 91% very quickly.  (High load is defined
+as holding the sustain pedal down and rapidly hitting
+SRO notes.)
+
+Yoshimis were set to 48000 under ALSA.  Set them to 96000.
+No change.
+
+Set zita --buff to 14 for all soft servers.  No change.
+
+Improved, not enough.  Set --filt to 32.  No change.
+Probably need to keep --filt to 24 or so and then add
+something new.  Perhaps --buff, although --buff is for
+network jitter and we're localhost.  Might be the moment
+to take Yoshimi to single-process.  Perhaps multi-instance
+single-process, perhaps combine all.  If need to use
+immediately, probably reducing from 96K would help a lot.
+
+xruns at very high load using SRO.  Momentary cutouts.
+Not surprising, this is the highest-powered patch at the moment.
+It appears to be overload of the zita resampling protocols.
+One or both sides of the zita connectors restart or reengage
+spontaneously.  Self-healing.  Impressive.
+Automatic --filt is 16.  Setting --filt to 20.
+
+Completed revision of startup sequence.  Appears solid.
+Best method appears to be to run it all in/from an lxterminal,
+the lxterminal being run by the 'boot' script.
+
+Found that by using the NAME argument to a2jmidi_bridge, giving
+each port an appropriate name, aj-snapshot became deconfused and
+wired them all, and also, the audio attack zzt in Yoshimi went
+away (no clue why).
+
+Note for future reference.  Using:
+  ./soft1 catia
+to see and edit soft server #1's JACK and ALSA connections.  Using:
+  ./soft3 aj-snapshot AJSOFT3.xml
+to save soft server #3's JACK and ALSA connections.
+
+So far, recompiling the Calf plugins and Yoshimi, from
+original source, with optimizations as below.
+
+Set up Roland UM-ONE USB MIDI interface to keyboard.
+Found that if I run Catia on the hard server, with ALSA MIDI
+visible, I can wire the USB-ONE's output to all three of the visible
+a2j_bridge ALSA MIDI ports.  And it worked.  Audio not quite
+smooth on the attack.  Automatic rewiring via aj-snapshot
+only connected one of the three ports.  Investigating.
+
+The next highest usage is Yoshimi, not surprisingly given setup.
+7-8% each, several.  Won't touch this yet, next priority is MIDI/control.
+
+Tested full run again.
+Now four listings 13-14% each,
+and the 40% on-and-off is entirely gone.
+
+Set in /etc/makepkg.conf:
+CFLAGS="-march=native -mtune=native -O3 -msse4.2 -mavx -mfpmath=sse -pipe -fstack-protector-strong -fno-plt"
+CXXFLAGS="-march=native -mtune=native -O3 -msse4.2 -mavx -mfpmath=sse -pipe -fstack-protector-strong -fno-plt"
+
+Arch's 'pbget' lets us bring in PKGBUILD for any package.
+Need package python3-memoizedb for 'pbget'.
+
+Recompiled calf set from source.
+First need install lilv, lv2 libraries.
+Found the following needs changed in the configure script:
+---
+if test "$set_enable_sse" = "yes"; then
+  CXXFLAGS="$CXXFLAGS -O3 -march=native -mtune=native -msse4.2 -mavx -mfpmath=sse"
+  fi
+---
+then configure:
+./configure --enable-sse --enable-experimental
+then 'make', then 'sudo make install'
+
+Studied CPU usage via htop.
+Found that by far the most power is being used by calf plugins, surprisingly.
+Four listings, 14-15% each.
+One CPU is being pushed to 40% on and off and off again, visibly.
+Will CPU-optimize calf plugins.
+
+Wired all, saved with aj-snapshots, tested Yoshimi
+sound engine in toto.
+Working!!!
+
+Now rewriting Distribute as Distribute.py.
+Using named output ports, to make it
+a lot easier, hopefully, to understand
+JACK wiring.
+
+All processes appear to be functional!!!!!!
+
+Found, after much thrashing, that if we create multiple
+jack.Client objects and attach each to a different JACK
+server, it doesn't work, they all see the ports on
+the first.  Have no idea why.  Have posted query to
+the jack.Client github issues area with sample code.
+It affects us in exactly one way: wait_for_jackport
+and relatives cannot be built to take jack.Client objects,
+they have to create their own JACK clients at each
+function run.  This is not terrible, it's just
+mildly inefficient.  Recoded for this, keeping the
+old code available in the files for possible
+future reference.
+
+Found that spawn_and_settle may not be sending processes
+appropriate environment for JACK server selection.  Testing.
+
+Realized MIDI architecture needs to be established.
+- If we run a2jmidi_bridge on each soft server we
+should be able to connect each soft server to MIDI
+hardware, through ALSA.
+- This does require a separate Distribute process for each
+JACK soft server, and none on the hard server.
+- They can all be exactly the same Distribute code.
+- Given that we are designing for most effective (not stingy)
+use of truly ample CPU and RAM, this is probably the best,
+because it keeps the stage count at a minimum for each
+MIDI signal sent and received.
+- Even though each Distribute process will be considerably
+larger than necessary, using the same code (the same
+executable script!) for each will keep the system as a whole
+as simple as possible.
+
+Copied back working files from previous production set.
+Added .calfpresets to the git repo set.
+
+Syntax checking complete.  Recoded to permit flexible paths,
+using ~/BNR.
+
+First draft coding appears done.  Now syntax checking.
+python -m py_compile yourpythonscript.py
+
+The spawn code in jpctrl.py has to have JACK server name capability
+through environment variable change.
+https://stackoverflow.com/questions/2231227/python-subprocess-popen-with-a-modified-environment
+
+Need to check and revise code for all True/False return values.
+Done.
+
+Need to revise jpctrl.py and BOOT-GENERAL.py.  jpctrl.py
+used a single jack_client variable, external, until
+this MultiJACK BNR rewrite.  New design:
+- BOOT-GENERAL.py needs to have four jack_client
+variables, one per JACK server
+- These get used economically, as needed
+- These get closed/removed cleanly after
+all BOOT-GENERAL operations are done.
+
+Found that the github integration plugin bundled with
+'atom', does not build on Linux.  Installed PyCharm.
+Very nice.  Github integration very sweetly simple.
+Handles bash too.  Set up github sync, did first commit.
+Love it.
+
+Used yaourt [this is Manjaro after all] and installed
+Mididings.  It installs for python2.  Ran it.  Seems to
+work fine with python2.
+
+Built and installed Mididings.
+Did not run under python3, errored.
+Did not run under python2, not found.
+Posted Issue in github for mididings.
+
+Moved all to ~/BNR.  Logs will go to ~ for now.
+
+Mididings.
+Most recent version appears here:
+https://github.com/dsacre/mididings
+Built and installed from source according to readme instructions.
+Has not seen updates since 2015 at the latest.
+Don't know that it needs updates.  Probably not.
+Just in case, a few possibles here:
+https://wiki.linuxaudio.org/apps/midi_apps
+A GUI option found here, don't know that it does note range selection:
+https://open-music-kontrollers.ch/lv2/midi_matrix/
+ALSA Modular Synth is reported to have this capability.
+Its SourceForge is down.  kxstudio appears to be helping the project.
+http://linuxsynths.com/AMSPatchesDemos/alsamodularsynth.html
+
+
+Now need plan for Distribute.
+This is mididings.  This has to run on the hard server,
+because it has to interact with real hardware.
+MIDI.
+ALSA MIDI, not anything else at this time.  Might eventually transition
+to JACK MIDI over IP.  Will have to do the transition if all JACK
+servers cannot see ALSA MIDI at the same time.  There is a
+manual op for a2jmidid analogous to multi-JACK server starts,
+will try this first.
+
+Revisited wait_for_jack code near beginning of BOOT-GENERAL.py.
+Tested in live python3.  Working.
+
+Tested jpctrl JACK server check primitives.  All appear working.
+
+Set clock_source to 0 in BOOT-INITIAL.sh for hard server.
+0.3% DSP load with four (4) JACK servers running !!!!
+
+Found JACK setting to use HPET, is causing jack.Client to fail.
+Found HPET and RTC docs:
+https://wiki.linuxaudio.org/wiki/system_configuration#hpet
+with optimizations.  Immediate optimizations:
+--
+sudo sysctl -p /etc/sysctl.d/60-max-user-freq.conf
+echo -n 3072 | sudo tee /sys/class/rtc/rtc0/max_user_freq
+sudo chmod 660 /dev/hpet /dev/rtc0
+sudo chgrp audio /dev/hpet /dev/rtc0
+--
+Added yaourt package rc.local.d, placed the above in /etc/rc.local.d/bnr .
+--
+The n.p.c standard is set in sysctl.d/bnr.conf.
+---
+Also added this to /etc/sysctl.d/bnr.conf :
+dev.hpet.max-user-freq=3072
+
+Removed all pulseaudio items except libraries.
+
+Installed 'cadence' using yaourt.
+
+These optimizations go in /etc/makepkg.conf :
+-O3 -march=native -mtune=native -msse4.2 -mavx -mfpmath=sse"
+
+Power management on the CPU.  Set 'performance' governor in
+/etc/default/cpupower .  Did not appear to do anything.
+Will use sudo'd item in boot script.
+
+Using, in makepkg.conf, CFLAGS:
+-march=native -mtune=native -O3 -msse4.2 -mavx -mfpmath=sse
+
+There is an item in /etc/sudoers.d which contains an override for 'wheel'.
+Need to fix this so 'wheel' can do sudo without password.

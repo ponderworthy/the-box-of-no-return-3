@@ -1,0 +1,435 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CARLA-PROJECT>
+<CARLA-PROJECT VERSION='2.4'>
+ <EngineSettings>
+  <ForceStereo>false</ForceStereo>
+  <PreferPluginBridges>false</PreferPluginBridges>
+  <PreferUiBridges>true</PreferUiBridges>
+  <UIsAlwaysOnTop>false</UIsAlwaysOnTop>
+  <MaxParameters>200</MaxParameters>
+  <UIBridgesTimeout>4000</UIBridgesTimeout>
+ </EngineSettings>
+
+ <Transport>
+  <BeatsPerMinute>120</BeatsPerMinute>
+ </Transport>
+
+ <!-- Calf Crusher -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>Calf Crusher</Name>
+   <URI>http://calf.sourceforge.net/plugins/Crusher</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f1</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Bypass</Name>
+    <Symbol>bypass</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Input Gain</Name>
+    <Symbol>level_in</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Output Gain</Name>
+    <Symbol>level_out</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>11</Index>
+    <Name>Bit Reduction</Name>
+    <Symbol>bits</Symbol>
+    <Value>4</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>12</Index>
+    <Name>Morph</Name>
+    <Symbol>morph</Symbol>
+    <Value>0.5</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>13</Index>
+    <Name>Mode</Name>
+    <Symbol>mode</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>14</Index>
+    <Name>DC</Name>
+    <Symbol>dc</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>15</Index>
+    <Name>Anti-Aliasing</Name>
+    <Symbol>anti_aliasing</Symbol>
+    <Value>0.5</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>16</Index>
+    <Name>Sample Reduction</Name>
+    <Symbol>samples</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>17</Index>
+    <Name>LFO Active</Name>
+    <Symbol>lfo</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>18</Index>
+    <Name>LFO Depth</Name>
+    <Symbol>lforange</Symbol>
+    <Value>20</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>19</Index>
+    <Name>LFO Rate</Name>
+    <Symbol>lforate</Symbol>
+    <Value>0.300000011920929</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <!-- LittleFly -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>LittleFly</Name>
+   <URI>https://github.com/brummer10/LittleFly.lv2#_LittleFly_</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>BYPASS</Name>
+    <Symbol>BYPASS</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>VOLUME</Name>
+    <Symbol>VOLUME</Symbol>
+    <Value>0.5</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <!-- Calf Saturator -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>Calf Saturator</Name>
+   <URI>http://calf.sourceforge.net/plugins/Saturator</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x3f1</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Bypass</Name>
+    <Symbol>bypass</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Input Gain</Name>
+    <Symbol>level_in</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Output Gain</Name>
+    <Symbol>level_out</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>11</Index>
+    <Name>Mix</Name>
+    <Symbol>mix</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>12</Index>
+    <Name>Saturation</Name>
+    <Symbol>drive</Symbol>
+    <Value>5</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>13</Index>
+    <Name>Blend</Name>
+    <Symbol>blend</Symbol>
+    <Value>10</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>14</Index>
+    <Name>Lowpass</Name>
+    <Symbol>lp_pre_freq</Symbol>
+    <Value>20000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>15</Index>
+    <Name>Highpass</Name>
+    <Symbol>hp_pre_freq</Symbol>
+    <Value>10</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>16</Index>
+    <Name>Lowpass</Name>
+    <Symbol>lp_post_freq</Symbol>
+    <Value>20000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>17</Index>
+    <Name>Highpass</Name>
+    <Symbol>hp_post_freq</Symbol>
+    <Value>10</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>18</Index>
+    <Name>Tone</Name>
+    <Symbol>p_freq</Symbol>
+    <Value>2000</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>19</Index>
+    <Name>Amount</Name>
+    <Symbol>p_level</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>20</Index>
+    <Name>Gradient</Name>
+    <Symbol>p_q</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>21</Index>
+    <Name>Activate Pre</Name>
+    <Symbol>pre</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>22</Index>
+    <Name>Activate Post</Name>
+    <Symbol>post</Symbol>
+    <Value>0</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <ExternalPatchbay>
+  <Connection>
+   <Source>BNR-STD-Reverb:Reverb Out #1</Source>
+   <Target>Starship/Matisse HD Audio Controller Analog Stereo:playback_FL</Target>
+  </Connection>
+  <Connection>
+   <Source>BNR-STD-Reverb:Reverb Out #2</Source>
+   <Target>Starship/Matisse HD Audio Controller Analog Stereo:playback_FR</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/SRO:out-1</Source>
+   <Target>CalfSRO:Equalizer 12 Band In #1</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/SRO:out-2</Source>
+   <Target>CalfSRO:Equalizer 12 Band In #2</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/Strings:out-1</Source>
+   <Target>MaxStringsFilters:Equalizer 12 Band In #1</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/Strings:out-2</Source>
+   <Target>MaxStringsFilters:Equalizer 12 Band In #2</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/FlowBells:out-1</Source>
+   <Target>Mixer-General/FinalOutput:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/FlowBells:out-2</Source>
+   <Target>Mixer-General/FinalOutput:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/FinalOutput:out-1</Source>
+   <Target>BNR-STD-Reverb:Reverb In #1</Target>
+  </Connection>
+  <Connection>
+   <Source>Mixer-General/FinalOutput:out-2</Source>
+   <Target>BNR-STD-Reverb:Reverb In #2</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshSRO1:left</Source>
+   <Target>Mixer-General/SRO:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshSRO1:right</Source>
+   <Target>Mixer-General/SRO:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshSRO2:left</Source>
+   <Target>Mixer-General/SRO:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshSRO2:right</Source>
+   <Target>Mixer-General/SRO:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshSRO3:left</Source>
+   <Target>Mixer-General/SRO:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshSRO3:right</Source>
+   <Target>Mixer-General/SRO:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>CalfSRO:Equalizer 12 Band Out #1</Source>
+   <Target>CalfSRO:Multiband Compressor In #1</Target>
+  </Connection>
+  <Connection>
+   <Source>CalfSRO:Equalizer 12 Band Out #2</Source>
+   <Target>CalfSRO:Multiband Compressor In #2</Target>
+  </Connection>
+  <Connection>
+   <Source>CalfSRO:Multiband Compressor Out #1</Source>
+   <Target>Mixer-General/FinalOutput:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>CalfSRO:Multiband Compressor Out #2</Source>
+   <Target>Mixer-General/FinalOutput:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsSSO:Fluidsynth Out #1</Source>
+   <Target>Mixer-General/Strings:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsSSO:Fluidsynth Out #2</Source>
+   <Target>Mixer-General/Strings:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsBassAdd:Fluidsynth Out #1</Source>
+   <Target>Mixer-General/Strings:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsBassAdd:Fluidsynth Out #2</Source>
+   <Target>Mixer-General/Strings:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsBassAdd:Fluidsynth (2) Out #1</Source>
+   <Target>Mixer-General/Strings:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsBassAdd:Fluidsynth (2) Out #2</Source>
+   <Target>Mixer-General/Strings:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsBassAdd:Fluidsynth (3) Out #1</Source>
+   <Target>Mixer-General/Strings:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>StringsBassAdd:Fluidsynth (3) Out #2</Source>
+   <Target>Mixer-General/Strings:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>MaxStringsFilters:Equalizer 12 Band Out #1</Source>
+   <Target>MaxStringsFilters:Multiband Compressor In #1</Target>
+  </Connection>
+  <Connection>
+   <Source>MaxStringsFilters:Equalizer 12 Band Out #2</Source>
+   <Target>MaxStringsFilters:Multiband Compressor In #2</Target>
+  </Connection>
+  <Connection>
+   <Source>MaxStringsFilters:Multiband Compressor Out #1</Source>
+   <Target>Mixer-General/FinalOutput:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>MaxStringsFilters:Multiband Compressor Out #2</Source>
+   <Target>Mixer-General/FinalOutput:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshFlowBells:left</Source>
+   <Target>Mixer-General/FlowBells:in-1</Target>
+  </Connection>
+  <Connection>
+   <Source>yoshimi-YoshFlowBells:right</Source>
+   <Target>Mixer-General/FlowBells:in-2</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:SRO</Source>
+   <Target>yoshimi-YoshSRO3:midi in</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:SRO</Source>
+   <Target>yoshimi-YoshSRO2:midi in</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:SRO</Source>
+   <Target>yoshimi-YoshSRO1:midi in</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:Strings</Source>
+   <Target>StringsSSO:Fluidsynth MIDI In</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:Strings</Source>
+   <Target>StringsBassAdd:Fluidsynth (3) MIDI In</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:Strings</Source>
+   <Target>StringsBassAdd:Fluidsynth (2) MIDI In</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:Strings</Source>
+   <Target>StringsBassAdd:Fluidsynth MIDI In</Target>
+  </Connection>
+  <Connection>
+   <Source>Distribute.py:FlowBells</Source>
+   <Target>yoshimi-YoshFlowBells:midi in</Target>
+  </Connection>
+ </ExternalPatchbay>
+</CARLA-PROJECT>

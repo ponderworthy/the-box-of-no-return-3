@@ -1,0 +1,35 @@
+#!/bin/python
+
+import sys
+import csv
+import subprocess
+
+if len(sys.argv) < 2:
+	print('\n usage: pw-loadwires filename\n')
+	quit()
+
+link_loaded = 0
+link_exists = 0
+link_failed = 0
+with open(sys.argv[1], newline='') as csvfile:
+	pwwreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+	for row in pwwreader:
+		run_output = subprocess.run('pw-link ' + row[0] + ' ' + row[1], shell=True, capture_output=True)
+		if run_output.returncode == 0:
+			print('Loaded: ' + row[0] + ' --> ' + row[1])
+			link_loaded += 1
+		else:
+			run_stderr = str(run_output.stderr)
+			if run_stderr.find('File exists') != -1:
+				print('Exists: ' + row[0] + ' --> ' + row[1])
+				link_exists += 1
+			elif run_stderr.find('No such file or directory') != -1:
+				print('Failed: ' + row[0] + ' --> ' + row[1])
+				link_failed += 1
+
+print('')
+print('Loaded: ' + str(link_loaded))
+print('Exists: ' + str(link_exists))
+print('Failed: ' + str(link_failed))
+
+
