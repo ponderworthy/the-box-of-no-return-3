@@ -32,5 +32,5 @@ used for this purpose.
 
 * One of the more difficult challenges was solved in earlier iterations of the BNR: startup.  Each JACK client has to "settle" at startup before the next one begins loading.  The python library jpctrl.py was created to handle this, and is used in BOOT-GENERAL.py.
 
-
+* In this edition, wiring is all by pipewire, not by JACK:  pipewire talks the JACK api very nicely, and no doubt at all it creates JACK-style wiring between JACK apps, but I'm not commanding the wiring by JACK anymore, I have set up some applets which work in connection with 'helvium', a pipewire wiring visualizer.  One wires in helvium, then saves and loads wiring sets in one or more CSV files.  Works very nicely indeed.  More on this soon!  Check the code, it's all there :-)
 
