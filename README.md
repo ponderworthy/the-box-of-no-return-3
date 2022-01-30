@@ -1,6 +1,6 @@
 # the-box-of-no-return-3
 
-The Box of No Return III is a Linux synth platform suitable for live musicianship, designed to handle patches with enormous demands, and switch between them with zero delay and zero cutout.  Its current production design is discussed at https://lsn.ponderworthy.com.  This repository was created to receive the files for its second major edition, which is using the [pipewire](https://pipewire.org/) audio architecture at its core.  The BNR using these files is up and running, is not in regular use yet, but will be soon.
+The Box of No Return III is a Linux synth platform suitable for live musicianship, designed to handle patches with enormous demands, and switch between them with zero delay and zero cutout.  Its current production design is discussed at https://lsn.ponderworthy.com.  This repository was created to receive the files for its third major edition, which is using the [pipewire](https://pipewire.org/) audio architecture at its core.  The BNR using these files is up and running, is not in regular use yet, but will be soon.
 
 ## the name
 
