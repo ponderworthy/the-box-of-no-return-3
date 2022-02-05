@@ -19,7 +19,7 @@
 	Gain_Module 0x2E create :parameter_values "0.000000:0.000000" :is_default 1 :chain 0x2C :active 1
 	Meter_Module 0x2F create :is_default 1 :chain 0x2C :active 1
 	JACK_Module 0x30 create :parameter_values "2.000000:0.000000" :is_default 1 :chain 0x2C :active 1
-	Mixer_Strip 0x6A create :name "DistortionOutput" :width "wide" :tab "signal" :color 1486043484 :gain_mode 0 :mute_mode 0 :group 0x38 :auto_input "" :manual_connection 1
+	Mixer_Strip 0x6A create :name "DistortionOutput" :width "wide" :tab "fader" :color 1486043484 :gain_mode 0 :mute_mode 0 :group 0x38 :auto_input "" :manual_connection 1
 	Chain 0x6B create :strip 0x6A :tab "chain"
 	JACK_Module 0x6C create :parameter_values "0.000000:2.000000" :is_default 1 :chain 0x6B :active 1
 	Gain_Module 0x6D create :parameter_values "0.000000:0.000000" :is_default 1 :chain 0x6B :active 1

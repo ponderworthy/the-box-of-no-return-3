@@ -55,14 +55,6 @@ if not jpctrl.spawn_and_settle('calfjackhost --client BNR-STD-Reverb reverb:SRO4
 print('\n')
 
 print('-----------------------------------------------------------------')
-print('Pause to settle, before we run Distribute...')
-print('-----------------------------------------------------------------')
-
-# Pause was necessary under JACK for unknown reasons.  
-# We'll see, under PipeWire.
-# jpctrl.stdsleep(3)
-
-print('-----------------------------------------------------------------')
 print('Start Distribute.py...')
 print('-----------------------------------------------------------------')
 
@@ -72,21 +64,24 @@ print('-----------------------------------------------------------------')
 
 print('\nStarting Distribute.py...')
 
-if not jpctrl.spawn_and_settle(bnr_dir + 'Distribute.py'):
+if not jpctrl.spawn_background(bnr_dir + 'Distribute.py'):
     jpctrl.exit_with_beep()
 
-if jpctrl.wait_for_jackport('Distribute.py:SRO'):
-    print('Distribute.py confirmed via port SRO creation.')
-else:
-    print('wait_for_jackport on Distribute.py failed.')
-    jpctrl.exit_with_beep()
+# if not jpctrl.spawn_and_settle(bnr_dir + 'Distribute.py'):
+#    jpctrl.exit_with_beep()
+
+# if jpctrl.wait_for_jackport('Distribute.py:SRO'):
+#    print('Distribute.py confirmed via port SRO creation.')
+# else:
+#    print('wait_for_jackport on Distribute.py failed.')
+#    jpctrl.exit_with_beep()
 
 print('-----------------------------------------------------------------')
 print('Start non-mixer...')
 print('-----------------------------------------------------------------')
 
 if not jpctrl.spawn_and_settle(
-        'non-mixer --instance Mixer-General ' + bnr_dir + 'non-mixer/Mixer-General --osc-port=7587'):
+        'non-mixer --instance Mixer-General ' + bnr_dir + 'non-mixer/Mixer-General'):
     jpctrl.exit_with_beep()
 
 # if not jpctrl.wait_for_jackport('Mixer-General/CleanOutput:out-1'):

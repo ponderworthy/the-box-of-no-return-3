@@ -86,7 +86,7 @@ print('Start non-mixer...')
 print('-----------------------------------------------------------------')
 
 if not jpctrl.spawn_and_settle(
-        'non-mixer --instance Mixer-General ' + bnr_dir + 'non-mixer/Mixer-General --osc-port=7587'):
+        'non-mixer --instance Mixer-General ' + bnr_dir + 'non-mixer/Mixer-General'):
     jpctrl.exit_with_beep()
 
 # if not jpctrl.wait_for_jackport('Mixer-General/CleanOutput:out-1'):

@@ -11,7 +11,7 @@
 
 # Change this according to your sound card name
 # as found in /proc/asound/cards
-export SOUNDCARD_NAME=Generic
+export SOUNDCARD_NAME=USB
 
 echo "Set volume for audio device..."
 
