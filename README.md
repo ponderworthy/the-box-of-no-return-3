@@ -34,5 +34,5 @@ used for this purpose.
 
 * In this edition, wiring is all by pipewire, not by JACK:  pipewire talks the JACK api very nicely, and no doubt at all it creates JACK-style wiring between JACK apps, but I'm not commanding the wiring by JACK anymore, I have set up some applets which work in connection with 'helvium', a pipewire wiring visualizer.  One wires in helvium, then saves and loads wiring sets in one or more CSV files, using pw-loadwires and pw-savewires.  pw-dewire is provided to remove all wires conveniently.  Works very nicely indeed.  More on this soon!  Check the code, it's all there :-)
 
-* Current status is nonfunctional, only because suddenly mididings won't run, errors come with 'from mididings import *'.  More when this can be rectified.
+* Mididings fails compilation on many new distros now, due to changes in Python support libraries.  https://github.com/ponderworthy/mididings includes a fix.
 
