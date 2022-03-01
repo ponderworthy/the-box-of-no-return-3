@@ -49,8 +49,29 @@
     
     <h2>a summary of how</h2>
     
-    <p>After one gets a PC ready for this, one takes a MIDI keyboard, and plugs it in using a USB MIDI interface.  
-    It's not exactly trivial, but it does work well once you sort it out.  On your keyboard, you'll need
+    <p>First we set up a good Linux distro like Manjaro which does both Pipewire and major Linux audio 
+    applications, on good PC hardware, say a quad-core at 3.3GHz or so, better obviously better.  
+    Then we get audio to work well using Pipewire.  Then, we clone this whole repository into 
+    a folder called BNR, in the user home folder of an automatically logging-in user.  
+    There's a number of software tools you'll need to add, there's a list below.  
+    Then we take a MIDI keyboard, and plug it in using a USB MIDI interface.  
+    It's breathtaking once you get it all running.  Here's the list.  Some may already be present,
+    and some may be a bit tough to get in.  You can certainly substitute; obviously, if you do,
+    you'll need to customize the "glue" accordingly.</p>
+    
+    <UL>
+    <LI><A HREF="https://yoshimi.sourceforge.io/">Yoshimi</A>, a blow-your-doors-off software synthesizer.</LI>
+    <LI>fluidsynth, a very capable SF2 SoundFont host and player.</LI>
+    <LI>Calf Studio Gear, for reverb and other audio signal processing, and more; often called 'calf' or 'calf-plugins', depending on distro.</LI>
+    <LI>mididings, for MIDI signal processing and rewriting.  Missing and out of date in a number of 
+    distros recently, it is most elegant and efficient.  Its originator has been not found for quite some time, but there are <UL>many</UL>
+    forks on Github, and <A HREF="https://github.com/ponderworthy/mididings">ours compiles and runs well</A> in the most current Python (as of this writing).</LI>
+    <LI>non-mixer, a most profoundly excellent mixer and effects host for JACK audio streams.</LI>
+    <LI>lxterminal, a lightweight, very reliable terminal.</LI>
+    <LI>helvum, for Pipewire wiring visuals.  May have to be compiled <A HREF="https://gitlab.freedesktop.org/pipewire/helvum">from source</A>, depending on distro.</LI>
+    </UL>
+    
+    <p>On your MIDI keyboard, you'll need
     to find out how to get the MIDI keyboard to send MIDI note-events and sustain-pedal-events out, and how
     to set the channel; all MIDI-capable keyboards have had the ability to do this for quite a few decades.
     Once you have done this, and the BNR is hot, if you send your note-events on channel 1 you get 
