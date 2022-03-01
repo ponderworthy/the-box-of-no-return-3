@@ -2,13 +2,15 @@
 <html dir="ltr" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>The Box of No Return</title>
+    <title>The Box of No Return III</title>
     <link type="text/css" href="styles.css" rel="stylesheet">
   </head>
   <body>
     <h1 style="font-size: 2.1em; margin-bottom: 0.5em;">The Box of No Return</h1>
+
     <h2>summary</h2>
-    <p>The Box of No Return is a Linux-based musical synthesizer platform,
+
+    <p>The Box of No Return III is a Linux-based musical synthesizer platform,
       suitable for live musicianship, designed to handle multiple patches with
       enormous demands, and switch between them with zero delay and zero
       cutout.&nbsp; If you sit in your home studio and use single SoundFonts
@@ -17,55 +19,69 @@
       to experience the unyielding power of the musical harmonic roar, a
       full implementation of the BNR may suit you well.&nbsp; There are
       obviously middle grounds too ☺, and there are articles here to help in
-      general.  As of 2021-07-05, there are also <a href="https://github.com/ponderworthy/the-box-of-no-return/discussions">online discussions here at Github.</a></p>
-    <h2>questions, contributions, discussion, the code</h2>
-    <p>The project and its code are <a href="https://github.com/ponderworthy/the-box-of-no-return"
+      general.  
+
+    <h2>the purpose of this project</h2>
+    
+    <p>The BNR exists to apply major computing power available, to music tone generation.  We 
+    don't want to be limited to the cute little processors in commercial keyboards.  The 
+    available difference is so great between the two, that we should be able to produce subjective
+    multiple orders of magnitude increase in tonal depth and profundity, using what we have
+    available in general desktop computing hardware, especially running Linux, where we are
+    at least potentially less limited.  And this will.</p>
+    
+    <h2>the code</h2>
+
+    <p>The project and its code are <a href="https://github.com/ponderworthy/the-box-of-no-return-3"
         target="_blank">here</a>.&nbsp; There are SF2 SoundFonts
       involved in the current build which are downloadable <a href="https://archive.org/details/SonatinaSymphonicOrchestraSF2"
         target="_blank">here</a>; these are conversions of the Sonatina
       Symphonic Orchestra, original SFZs being <a href="http://sso.mattiaswestlund.net/download.html"
-        target="_blank">here</a>. Friend Bruce Schultz recently pointed out that two SF2s are missing, and these are now <A HREF="https://mega.nz/folder/xl4nACqb#l1tXws-wSYIX59PEDztjiA">here.</A></p>
-    <h2>more articles</h2>
-    <p>are right <a href="articles.html">here</a>.&nbsp; There is also a
-      Facebook group <a href="https://www.facebook.com/groups/1518955771533144/">over
-        here</a>.</p>
-    <h2>why this project and its benefits</h2>
-    <p>From the beginning, the BNR was built out of a need to host patches of
-      maximum, profound and terrible, tonal content. If you find yourself
-      reducing the profundity of your patches because your machine won't do
-      better, this project may be very good for you, especially if you play
-      live. Current patches include one with three simultaneous <a href="http://yoshimi.github.io/"
-        title="http://yoshimi.github.io/">Yoshimi</a>s, another with several
-      simultaneous large <a href="http://www.fluidsynth.org/">FluidSynth</a>
-      soundfonts, a third called "flowbells", and mixtures.&nbsp;</p>
-    <p>Surprisingly enough, the current BNR is quite a lot more stable than its
-      predecessors.&nbsp; If one of its soft servers gets overloaded (say, due
-      to its musician having a really good day), it cuts out without static or
-      other noise, and recovers, and comes back just as quietly.&nbsp; Obviously
-      we engineer against such events, but it is wonderful to have the setup so
-      much more forgiving.<br>
-      <br>
-      The current known boxes running with this code, are an eight-core 4GHz
-      machine with 8G RAM, and a much newer 3.3GHz quad-core box, also with 8G. I can definitely recommend quad, but wouldn't go
-      lower than 3GHz or so, and probably Intel i5, not i3.  
-      In an earlier iteration, the 8-core used the conventional single <a href="http://www.jackaudio.org/">JACK</a> server; but less than
-      one-quarter of its CPU capacity was being used, while JACK reported that
-      75% of its capacity was being used. In 2015 began an effort, now
-      successful, to use multiple JACK processes together in one box, and this
-      is the rebuild of the BNR with <a href="https://github.com/ponderworthy/MultiJACK">MultiJACK</a>
-      at its core. <br>
-      <br>
-      There are quite a few people using tools like NetJACK to increase JACK
-      capacity with multiple boxes, or at least multiple motherboards. But if
-      you value portability, if you value space, and/or if you are a gigging
-      musician, a fragile or heavy (one, the other, or both; probably not
-      neither) multi-motherboard construct is not preferable. Most users of
-      Linux-hardware synths limit themselves as a result of what one JACK server
-      can do, and other platforms limit analogously; here we have an effort to
-      blow the door open just a bit more.</p>
+        target="_blank">here</a>. Friend Bruce Schultz recently pointed out that two SF2s are missing, 
+        and these are now <A HREF="https://mega.nz/folder/xl4nACqb#l1tXws-wSYIX59PEDztjiA">here.</A></p>
+        
+    <h2>current status</h2>
+    
+    <p>We have the Supermega Rumblic Organ which uses six Yoshimi patches spread over three
+    independent Yoshimi processes.  The Strings are massive and deep in the low, and feathery in the high, using
+    a large number of different SoundFonts combined into one SF2 with other SF2's running at the same time.
+    And Flowbells are smooooth.  There are ways to combine them too.</p>
+    
+    <h2>a summary of how</h2>
+    
+    <p>After one gets a PC ready for this, one takes a MIDI keyboard, and plugs it in using a USB MIDI interface.  
+    It's not exactly trivial, but it does work well once you sort it out.  On your keyboard, you'll need
+    to find out how to get the MIDI keyboard to send MIDI note-events and sustain-pedal-events out, and how
+    to set the channel; all MIDI-capable keyboards have had the ability to do this for quite a few decades.
+    Once you have done this, and the BNR is hot, if you send your note-events on channel 1 you get 
+    the Supermega Rumblic Organ, on channel 2 you get Strings, and more; look in the source for 
+    <A HREF="https://github.com/ponderworthy/the-box-of-no-return-3/blob/main/Distribute.py">Distribute.py</A>
+    for the more, it is the applet which controls the translation.  Each one of the patches is 
+    a combination of tone generation applications and other applications to mix and modify
+    their signals, all connected by Pipewire.</p>
+    
+    <h2>architecture</h2>
+
+    <p>To connect audio applications in series, in other words to make either a synthesizer or
+    audio processor in Linux, one must use something which can accept and maintain "wires", connections,
+    between the applications.  For twenty-plus years the most standard way to do this
+    has been JACK, which stands for the Jack Audio Connection Kit.  This is still the most common
+    standard as of this writing. The previous iteration of the BNR used multiple JACK processes in tandem, 
+    because the one JACK process used in the original (in standard fashion), often crashed under 
+    the strain. Iteration III uses Pipewire as its foundation, for a quite drastic increase in 
+    performance.  Pipewire is API-agnostic, it will interconnect any of the current common 
+    audio APIs in Linux, e.g., JACK, ALSA, Pulse, et cetera, and it will handle demands in 
+    a very non-round-robin manner, producing a startlingly 
+    flexible result.  BNR III still does use the JACK API for many good reasons, ranging from 
+    toolset to just plain excellence in this and similar modes, but it is
+    Pipewire responding now and keeping the wiring.</p>
+    
+    <h2>postscript</h2>
+
     <p>Many prayers granted, enormous help from the Linux Audio community, and
       much study, work, and trial and error, has gone into making this happen
       reliably and well.&nbsp; My gratitude to all!</p>
+      
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-76358613-4"></script>
     <script>

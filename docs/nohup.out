@@ -1,0 +1,2 @@
+
+(gedit:1086720): GtkSourceView-CRITICAL **: 18:04:58.704: Highlighting a single line took too much time, syntax highlighting will be disabled
