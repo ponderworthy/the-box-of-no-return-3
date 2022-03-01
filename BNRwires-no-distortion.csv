@@ -1,4 +1,3 @@
-'Mixer-General (Inputs):FlowBells/out-1','Mixer-General (Outputs):DistortionOutput/in-1'
 'Distribute.py:SRO','yoshimi-YoshSRO3:midi in'
 'Mixer-General (Outputs):CleanOutput/out-1','BNR-STD-Reverb:Reverb In #1'
 'CalfSRO:Equalizer 12 Band Out #2','CalfSRO:Multiband Compressor In #2'
@@ -42,8 +41,3 @@
 'Mixer-General (Outputs):CleanOutput/out-2','BNR-STD-Reverb:Reverb In #2'
 'BNR-STD-Reverb:Reverb Out #1','alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y7TH7C30BB03D6-00.analog-stereo:playback_FL'
 'Mixer-General (Inputs):FlowBells/out-2','Mixer-General (Outputs):CleanOutput/in-2'
-'Mixer-General (Inputs):FlowBells/out-2','Mixer-General (Outputs):DistortionOutput/in-2'
-'CalfSRO:Multiband Compressor Out #1','Mixer-General (Outputs):DistortionOutput/in-1'
-'CalfSRO:Multiband Compressor Out #2','Mixer-General (Outputs):DistortionOutput/in-2'
-'MaxStringsFilters:Multiband Compressor Out #1','Mixer-General (Outputs):DistortionOutput/in-1'
-'MaxStringsFilters:Multiband Compressor Out #2','Mixer-General (Outputs):DistortionOutput/in-2'

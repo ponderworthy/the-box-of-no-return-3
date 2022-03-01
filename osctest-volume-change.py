@@ -1,8 +1,7 @@
-"""Small example OSC client -- uses 'python-osc'
+#
+# Turns DistortionOutput to zero, CleanOutput to 1 (max).
+#
 
-This program sends 10 random values between 0.0 and 1.0 to the /filter address,
-waiting for 1 seconds between each value.
-"""
 import argparse
 import random
 import time
@@ -20,5 +19,6 @@ if __name__ == "__main__":
 
   client = udp_client.SimpleUDPClient(args.ip, args.port)
 
-  client.send_message("/strip/DistortionOutput/Gain/Mute", 1.0)
+  client.send_message("/strip/DistortionOutput/Gain/Gain%20(dB)", 0.0)
+  client.send_message("/strip/CleanOutput/Gain/Gain%20(dB)", 1.0)
 
